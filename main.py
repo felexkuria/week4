@@ -3,5 +3,9 @@
 file =open("felex.txt", "r")
 
 data = file.read()
-
+file.close()
 print(data)
+
+with open("felex.txt", "r") as file:
+    data = file.read()
+    print(data)

@@ -12,4 +12,5 @@ try:
 except:
   print('Something went wrong')
 finally:
+  f.close()
   print('The try except is finished')
