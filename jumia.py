@@ -5,7 +5,8 @@ import pandas as pd
 try:
     # Sample data to write to Excel
     data = {
-        'Sid': [''] * 9,        'Name': ['QUALITY MODERN CHARCOAL STOVE', 'Stainless Steel Flask Vaccum Coffee Pot-2L', 'Stainless Steel Flask Vaccum Coffee Pot-2L', 'Stainless Steel Flask Vaccum Coffee Pot-2L', 'Stainless Steel Flask Vaccum Coffee Pot-2L', 'Stainless Steel Flask Vaccum Coffee Pot-2L', 'Chest Freezer', '5 Layer Square Vegetable Fruits Rotating Rack With Wheels', '6l Single Deep Fryer'],
+        'Sid': [''] * 9,       
+        'Name': ['QUALITY MODERN CHARCOAL STOVE', 'Stainless Steel Flask Vaccum Coffee Pot-2L', 'Stainless Steel Flask Vaccum Coffee Pot-2L', 'Stainless Steel Flask Vaccum Coffee Pot-2L', 'Stainless Steel Flask Vaccum Coffee Pot-2L', 'Stainless Steel Flask Vaccum Coffee Pot-2L', 'Chest Freezer', '5 Layer Square Vegetable Fruits Rotating Rack With Wheels', '6l Single Deep Fryer'],
         'Name_AR': [''] * 9,
         'Name_FR': [''] * 9,
         'Description': [''] * 9,
@@ -76,6 +77,18 @@ try:
         'Image7': [''] * 9,
         'Image8': [''] * 9
     }    
+    
+    # Generate descriptions dynamically based on product names
+    descriptions = [
+        f"<p>Planning a Tea party?- &nbsp;{name} will keep your guests well supplied with Hot Tea or Coffee</p>"
+        f"<p>Fashion Healthy Bottle's 2 Litre Capacity is enough to minimize the need for frequent refills. It holds enough, for your vacationing family</p>"
+        f"<p>It is made of quality material both in the &nbsp;inside and outside: Glass Inside and Stainless Steel Outside.</p>"
+        f"<p>It is also very easy to clean and does not break in the event it falls off.</p>"
+        f"<p>Order yours online on Jumia Kenya and have it delivered either at your place of residence or work place.</p>"
+        for name in data['Name']
+    ]
+    data['Description'] = descriptions
+    
     # Create DataFrame from sample data
     df = pd.DataFrame(data)
     

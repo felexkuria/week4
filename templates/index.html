@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Excel Data Populator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <div class="container mx-auto px-4 py-8">
+      <h1 class="text-4xl font-bold text-center text-blue-600 mb-8">
+        Excel Data Populator
+      </h1>
+
+      <!-- Instructions Section -->
+      <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Instructions</h2>
+        <div class="text-gray-700">{{ instructions|safe }}</div>
+      </div>
+
+      <!-- Form Section -->
+      <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Populate Data</h2>
+        <form
+          action="/submit"
+          method="post"
+          class="space-y-4"
+          onsubmit="return validateForm()"
+        >
+          <div>
+            <label for="name" class="block text-sm font-medium text-gray-700"
+              >Product Name:</label
+            >
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            />
+          </div>
+
+          <div>
+            <label
+              for="description"
+              class="block text-sm font-medium text-gray-700"
+              >Description:</label
+            >
+            <textarea
+              id="description"
+              name="description"
+              required
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            ></textarea>
+          </div>
+
+          <div>
+            <label for="brand" class="block text-sm font-medium text-gray-700"
+              >Brand:</label
+            >
+            <select
+              id="brand"
+              name="brand"
+              required
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            >
+              {% for brand in brands %}
+              <option value="{{ brand }}">{{ brand }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div>
+            <button
+              type="submit"
+              class="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Preview Section -->
+      <div class="bg-white shadow-md rounded-lg p-6">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Uploaded Data</h2>
+        <table class="min-w-full bg-white border border-gray-200">
+          <thead>
+            <tr>
+              <th class="py-2 px-4 border-b">Product Name</th>
+              <th class="py-2 px-4 border-b">Description</th>
+              <th class="py-2 px-4 border-b">Brand</th>
+            </tr>
+          </thead>
+          <tbody id="data-preview">
+            <!-- Dynamic rows will be added here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+      // Example: Add interactivity if needed
+      console.log("Page loaded successfully!");
+
+      // Validate form before submission
+      function validateForm() {
+        const name = document.getElementById("name").value.trim();
+        const description = document.getElementById("description").value.trim();
+        if (!name || !description) {
+          alert("Please fill out all required fields.");
+          return false;
+        }
+        return true;
+      }
+
+      // Example: Populate preview table dynamically (if needed)
+      function addRowToPreview(name, description, brand) {
+        const table = document.getElementById("data-preview");
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td class="py-2 px-4 border-b">${name}</td>
+          <td class="py-2 px-4 border-b">${description}</td>
+          <td class="py-2 px-4 border-b">${brand}</td>
+        `;
+        table.appendChild(row);
+      }
+    </script>
+  </body>
+</html>
