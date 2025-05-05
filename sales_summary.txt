@@ -1,0 +1,3 @@
+{'Total Revenue': np.float64(1132507.18),
+ 'Day with Highest Sales': '2024-07-08', 
+ 'Best Selling Product': 'Remote Controlled LED Strip/Snake Light (69 units sold)'}
